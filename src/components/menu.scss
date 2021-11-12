@@ -1,0 +1,50 @@
+.menu_component{
+  border: 1px solid rgb(238, 236, 234);
+  background-color:rgb(233, 228, 223);
+  .container{
+    padding: 25px 0;
+    width: 990px;
+    margin: 0 auto;
+    .menu_row{
+      justify-content: space-between;
+      display: flex;
+      .menu_logo{
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+        font-size: 20px;
+      }
+      .menu_input input{
+        margin-top: -8px;
+        width: 450px;
+        padding:9px 10px;
+      }
+      .menu_items{
+        display: flex;
+
+       &_result{
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+        font-size: 17px;
+        margin: 0 20px 0 0;
+       }
+
+       &_trush{
+        position: relative;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+        font-size: 17px;
+        margin: 0 0 0 20px;
+       }
+      }
+      .card_body{
+        background-color: rgb(255, 255, 255);
+        border: 1px solid black;
+        position: absolute;
+        width: 500px;
+        height: 700px;
+        right: 0;
+        margin: 30px 0;
+      }
+
+    }
+  }
+  
+}
+
