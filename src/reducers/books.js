@@ -3,21 +3,20 @@ const initialState = {
   isLoading: true,
 };
 
-export default ( state = initialState, action ) => {
+export default (state = initialState, action) => {
   switch (action.type) {
-    case "SET_BOOKS":
+    case 'SET_BOOKS':
       return {
         ...state,
         books: action.payload,
-        isLoading: false
+        isLoading: false,
       };
     case 'SET_LOADING':
       return {
         ...state,
-        isLoading: action.payload
-
+        isLoading: action.payload,
       };
     default:
       return state;
-  };
+  }
 };
