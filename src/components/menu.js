@@ -1,22 +1,27 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './menu.scss';
 import { SearchBooks } from '../actions/search';
 import { Card } from './card';
 import { useClickOutside } from '../customHooks/clickOutside';
+import { AddBookToCard } from '../actions/card';
 
 export const Menu = () => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-
   const count = useSelector((state) => state.count.count);
   const books = useSelector((state) => state.books.books);
+  const price = useSelector((state) => state.count.price);
   const ref = useRef();
 
   const chosenBooks = localStorage.getItem('books');
   const cardBooks = JSON.parse(chosenBooks);
 
-  const cardBooksfunc = () => {
+  useEffect(() => {
+    AddKeyCount();
+  }, [cardBooks]);
+
+  const AddKeyCount = () => {
     const arr = [];
     if (cardBooks) {
       books.forEach((elem) => {
@@ -24,6 +29,8 @@ export const Menu = () => {
           if (elem.id === book.id) {
             const addCount = { ...elem, count: book.count };
             arr.push(addCount);
+            dispatch(AddBookToCard(arr));
+            return arr;
           }
         });
       });
@@ -31,7 +38,7 @@ export const Menu = () => {
     return arr;
   };
 
-  useClickOutside(ref, () => setOpen(false));
+  useClickOutside(ref, () => setOpen(false), open);
 
   const hendalChange = (e) => {
     e.preventDefault();
@@ -58,21 +65,10 @@ export const Menu = () => {
             ></input>
           </div>
           <div className="menu_items">
-            <div className="menu_items_result">Итого: {} </div>
+            <div className="menu_items_result">Итого: {price} </div>
             <div className="menu_items_trush" onClick={openCard} ref={ref}>
               Корзина: {count}
-              <div>
-                {open ? (
-                  <Card
-                    open={open}
-                    setOpen={setOpen}
-                    cardBooksfunc={cardBooksfunc}
-                    addPrice={addPrice}
-                  />
-                ) : (
-                  ''
-                )}
-              </div>
+              <div>{open ? <Card setOpen={setOpen} /> : ''}</div>
             </div>
           </div>
         </div>
