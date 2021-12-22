@@ -1,11 +1,10 @@
-export const sortBooks = (books, sort, searchTitle) => {
-  const AllBooks = books.filter((elem) =>
+export const sortBooks = (currentBook, sort, searchTitle) => {
+  const AllBooks = currentBook.filter((elem) =>
     elem.title.toLowerCase().includes(searchTitle)
   );
 
   switch (sort) {
     case 1:
-      console.log(books);
       return AllBooks;
     case 2:
       const res2 = [...AllBooks].sort((a, b) => {
