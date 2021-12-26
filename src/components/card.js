@@ -6,17 +6,20 @@ import { price } from '../actions/menu';
 
 import './card.scss';
 
-export const Card = ({ setOpen }) => {
+export const Card = ({ setOpen, AllCount, Price }) => {
   const dispatch = useDispatch();
   const books = useSelector((state) => state.card.card);
   const priceredux = useSelector((state) => state.count.price);
+  const allBooks = useSelector((state) => state.books.books);
 
   const hendalDeleteBtn = (id) => {
     const index = books.findIndex((elem) => elem.id === id);
     if (index >= 0) {
       const books2 = [...books];
       books2.splice(index, 1);
-      dispatch(AddBookToCard([]));
+      setTimeout(() => {
+        dispatch(AddBookToCard(books2));
+      });
     }
     const json = localStorage.getItem('books');
     const res = JSON.parse(json);
@@ -26,6 +29,8 @@ export const Card = ({ setOpen }) => {
       localStorage.removeItem('books');
       localStorage.setItem('books', JSON.stringify(res));
     }
+    AllCount();
+    Price(allBooks);
   };
 
   const Func = () => {
@@ -33,7 +38,7 @@ export const Card = ({ setOpen }) => {
     dispatch(AddBookToCard([]));
     dispatch(price(0));
     localStorage.clear();
-    // setOpen(false);
+    setOpen(false);
   };
 
   return (

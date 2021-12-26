@@ -6,7 +6,7 @@ import { Card } from './card';
 import { useClickOutside } from '../customHooks/clickOutside';
 import { AddBookToCard } from '../actions/card';
 
-export const Menu = () => {
+export const Menu = ({ AllCount, Price }) => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const count = useSelector((state) => state.count.count);
@@ -68,7 +68,13 @@ export const Menu = () => {
             <div className="menu_items_result">Итого: {price} </div>
             <div className="menu_items_trush" onClick={openCard} ref={ref}>
               Корзина: {count}
-              <div>{open ? <Card setOpen={setOpen} /> : ''}</div>
+              <div>
+                {open ? (
+                  <Card setOpen={setOpen} AllCount={AllCount} Price={Price} />
+                ) : (
+                  ''
+                )}
+              </div>
             </div>
           </div>
         </div>
