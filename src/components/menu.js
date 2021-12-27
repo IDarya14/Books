@@ -67,7 +67,7 @@ export const Menu = ({ AllCount, Price }) => {
           <div className="menu_items">
             <div className="menu_items_result">Итого: {price} </div>
             <div className="menu_items_trush" onClick={openCard} ref={ref}>
-              Корзина: {count}
+              <div className="menu_items_trush_name">Корзина: {count}</div>
               <div>
                 {open ? (
                   <Card setOpen={setOpen} AllCount={AllCount} Price={Price} />

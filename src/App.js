@@ -40,7 +40,6 @@ export default function App() {
     const book = localStorage.getItem('books');
     const cardBook = JSON.parse(book);
     if (cardBook) {
-      console.log('data', data);
       data.forEach((elem) => {
         cardBook.forEach((item) => {
           if (elem.id === item.id) {

@@ -9,7 +9,6 @@ import './books.scss';
 import { useLocation } from 'react-router-dom';
 
 function Books({
-  setBooks,
   books,
   isLoading,
   sort,
@@ -84,26 +83,30 @@ function Books({
     <div className="card_component">
       <div className="container">
         <div className="cards_row">
-          {isLoading
-            ? 'Загрузка...'
-            : sortBooks(currentBook, sort, searchTitle).map((book) => {
-                return (
-                  <div key={book.id} className="cards_item">
-                    <div className="card">
-                      <div className="card_image">
-                        {' '}
-                        <img src={book.image} />{' '}
-                      </div>
-                      <div className="card_title">{book.title}</div>
-                      <div className="card_author">{book.author}</div>
-                      <div className="card_price">{`₴ ${book.price}`}</div>
-                      <div className="card_btn" onClick={() => Func(book)}>
-                        Добавить в корзину
-                      </div>
+          {isLoading ? (
+            'Загрузка...'
+          ) : sortBooks(currentBook, sort, searchTitle).length ? (
+            sortBooks(currentBook, sort, searchTitle).map((book) => {
+              return (
+                <div key={book.id} className="cards_item">
+                  <div className="card">
+                    <div className="card_image">
+                      {' '}
+                      <img src={book.image} />{' '}
+                    </div>
+                    <div className="card_title">{book.title}</div>
+                    <div className="card_author">{book.author}</div>
+                    <div className="card_price">{`₴ ${book.price}`}</div>
+                    <div className="card_btn" onClick={() => Func(book)}>
+                      Добавить в корзину
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              );
+            })
+          ) : (
+            <div className="noResult">Нет результатов</div>
+          )}
         </div>
         <Pagination perPage={perPage} totalBooks={books.length} />
       </div>

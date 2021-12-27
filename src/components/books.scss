@@ -133,6 +133,7 @@ h6 {
           padding: 10px;
           outline: 2px solid rgb(212, 206, 206);
           font-size: 16px;
+          cursor: pointer;
         }
 
         .card_btn:hover {
@@ -140,5 +141,10 @@ h6 {
         }
       }
     }
+  }
+  .noResult {
+    font-size: 30px;
+    margin: 0 auto;
+    padding: 30px;
   }
 }
