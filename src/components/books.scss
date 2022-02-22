@@ -140,6 +140,9 @@ h6 {
           background-color: rgb(163, 158, 158);
         }
       }
+      .card:hover {
+        border: 3px solid rgb(119, 114, 114);
+      }
     }
   }
   .noResult {

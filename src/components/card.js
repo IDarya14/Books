@@ -1,23 +1,23 @@
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { AddBookToCard } from '../actions/card';
+import { addBookToCard } from '../actions/card';
 import { count } from '../actions/menu';
-import { price } from '../actions/menu';
+import { priceR } from '../actions/menu';
 
 import './card.scss';
 
-export const Card = ({ setOpen, AllCount, Price }) => {
+export const Card = ({ setOpen, allCount, price }) => {
   const dispatch = useDispatch();
   const books = useSelector((state) => state.card.card);
   const priceredux = useSelector((state) => state.count.price);
   const allBooks = useSelector((state) => state.books.books);
 
-  const MoreBtn = (id) => {
+  const moreBtn = (id) => {
     const array = [...books];
     const index = array.findIndex((elem) => elem.id === id);
     array[index].count++;
     setTimeout(() => {
-      dispatch(AddBookToCard(array));
+      dispatch(addBookToCard(array));
     });
     const json = localStorage.getItem('books');
     const booksLS = JSON.parse(json);
@@ -25,23 +25,23 @@ export const Card = ({ setOpen, AllCount, Price }) => {
     booksLS[i].count++;
     localStorage.removeItem('books');
     localStorage.setItem('books', JSON.stringify(booksLS));
-    AllCount();
-    Price(allBooks);
+    allCount();
+    price(allBooks);
   };
 
-  const LessBtn = (id) => {
+  const lessBtn = (id) => {
     const array = [...books];
     const index = array.findIndex((elem) => elem.id === id);
     array[index].count--;
     if (array[index].count > 0) {
       setTimeout(() => {
-        dispatch(AddBookToCard(array));
+        dispatch(addBookToCard(array));
       });
     } else {
       console.log('help');
       array.splice(index, 1);
       setTimeout(() => {
-        dispatch(AddBookToCard(array));
+        dispatch(addBookToCard(array));
         if (!array.length) {
           setOpen(false);
         }
@@ -59,8 +59,8 @@ export const Card = ({ setOpen, AllCount, Price }) => {
       localStorage.removeItem('books');
       localStorage.setItem('books', JSON.stringify(booksLS));
     }
-    AllCount();
-    Price(allBooks);
+    allCount();
+    price(allBooks);
   };
 
   const hendalDeleteBtn = (id) => {
@@ -69,7 +69,7 @@ export const Card = ({ setOpen, AllCount, Price }) => {
       const books2 = [...books];
       books2.splice(index, 1);
       setTimeout(() => {
-        dispatch(AddBookToCard(books2));
+        dispatch(addBookToCard(books2));
         if (!books2.length) {
           setOpen(false);
         }
@@ -83,14 +83,14 @@ export const Card = ({ setOpen, AllCount, Price }) => {
       localStorage.removeItem('books');
       localStorage.setItem('books', JSON.stringify(res));
     }
-    AllCount();
-    Price(allBooks);
+    allCount();
+    price(allBooks);
   };
 
-  const Func = () => {
+  const func = () => {
     dispatch(count(0));
-    dispatch(AddBookToCard([]));
-    dispatch(price(0));
+    dispatch(addBookToCard([]));
+    dispatch(priceR(0));
     localStorage.clear();
     setOpen(false);
   };
@@ -116,13 +116,13 @@ export const Card = ({ setOpen, AllCount, Price }) => {
                         <div className="card__img-arrow">
                           <div
                             className="img-top"
-                            onClick={() => MoreBtn(elem.id)}
+                            onClick={() => moreBtn(elem.id)}
                           >
                             <img src="https://cdn-0.emojis.wiki/emoji-pics/facebook/up-arrow-facebook.png"></img>
                           </div>
                           <div
                             className="img-bottom"
-                            onClick={() => LessBtn(elem.id)}
+                            onClick={() => lessBtn(elem.id)}
                           >
                             <img src="https://cdn-0.emojis.wiki/emoji-pics/facebook/up-arrow-facebook.png"></img>
                           </div>
@@ -143,7 +143,7 @@ export const Card = ({ setOpen, AllCount, Price }) => {
             <div>Корзина пустая</div>
           )}
           <div className="cardbox__count">Итого: {priceredux} грн</div>
-          <div className="cardbox__clear-card" onClick={() => Func()}>
+          <div className="cardbox__clear-card" onClick={() => func()}>
             Очистить корзину
           </div>
         </div>

@@ -3,7 +3,7 @@ export const count = (count) => ({
   payload: count,
 });
 
-export const price = (price) => ({
+export const priceR = (price) => ({
   type: 'PRICE',
   payload: price,
 });

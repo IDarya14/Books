@@ -1,5 +1,5 @@
 export const sortBooks = (currentBook, sort, searchTitle) => {
-  const AllBooks = currentBook.filter(
+  const allBooks = currentBook.filter(
     (elem) =>
       elem.title.toLowerCase().includes(searchTitle) ||
       elem.author.toLowerCase().includes(searchTitle)
@@ -7,19 +7,19 @@ export const sortBooks = (currentBook, sort, searchTitle) => {
 
   switch (sort) {
     case 1:
-      return AllBooks;
+      return allBooks;
     case 2:
-      const res2 = [...AllBooks].sort((a, b) => {
+      const res2 = [...allBooks].sort((a, b) => {
         return a.rating - b.rating;
       });
       return res2;
     case 3:
-      const res3 = [...AllBooks].sort((a, b) => {
+      const res3 = [...allBooks].sort((a, b) => {
         return b.price - a.price;
       });
       return res3;
     case 4:
-      const res4 = [...AllBooks].sort((a, b) => {
+      const res4 = [...allBooks].sort((a, b) => {
         return a.price - b.price;
       });
       return res4;
@@ -33,9 +33,9 @@ export const sortBooks = (currentBook, sort, searchTitle) => {
         }
         return 0;
       };
-      const res5 = [...AllBooks].sort(sortArray);
+      const res5 = [...allBooks].sort(sortArray);
       return res5;
     default:
-      return AllBooks;
+      return allBooks;
   }
 };
