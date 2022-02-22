@@ -45,7 +45,7 @@ export const Registry = () => {
   console.table(regFormState.mobile);
 
   const formSubmitHendler = (e) => {
-    e.preventDefault();
+    e.preventDefault(); //
     let isFormValid = true;
 
     for (const name in regFormState) {
