@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './allbooks.scss';
 import Books from '../components/Books';
 import { Sort } from '../components/Sort';
