@@ -54,46 +54,43 @@ function Books({
 
   return (
     <div className="card_component">
-      <div className="container">
-        <div className="cards_row">
-          {isLoading ? (
-            'Загрузка...'
-          ) : sortBooks(currentBook, sort, searchTitle).length ? (
-            sortBooks(currentBook, sort, searchTitle).map((book) => {
-              return (
-                <div key={book.id} className="cards_item">
-                  <div className="card">
-                    <div onClick={() => oneBook(book)} className="card_image">
-                      {' '}
-                      <img src={book.image} />{' '}
-                    </div>
-                    <div className="card_title">{book.title}</div>
-                    <div className="card_author">{book.author}</div>
-                    <div className="card_price">{`₴ ${book.price}`}</div>
-                    <div className="card_btn" onClick={() => func(book)}>
-                      Добавить в корзину
-                    </div>
+      <div className="cards_row">
+        {isLoading ? (
+          'Загрузка...'
+        ) : sortBooks(currentBook, sort, searchTitle).length ? (
+          sortBooks(currentBook, sort, searchTitle).map((book) => {
+            return (
+              <div key={book.id} className="cards_item">
+                <div className="card">
+                  <div onClick={() => oneBook(book)} className="card_image">
+                    <img src={book.image} />
+                  </div>
+                  <div className="card_title">{book.title}</div>
+                  <div className="card_author">{book.author}</div>
+                  <div className="card_price">{`₴ ${book.price}`}</div>
+                  <div className="card_btn" onClick={() => func(book)}>
+                    Добавить в корзину
                   </div>
                 </div>
-              );
-            })
-          ) : (
-            <div className="noResult">Нет результатов</div>
-          )}
-        </div>
-
-        <Pagination
-          page={currentPage} //страница на которой я нахожусь
-          count={pageNumbers()} //
-          renderItem={(item) => (
-            <PaginationItem
-              component={Link}
-              to={`${window.location.pathname}?page=${item.page}`}
-              {...item}
-            />
-          )}
-        />
+              </div>
+            );
+          })
+        ) : (
+          <div className="noResult">Нет результатов</div>
+        )}
       </div>
+
+      <Pagination
+        page={currentPage}
+        count={pageNumbers()}
+        renderItem={(item) => (
+          <PaginationItem
+            component={Link}
+            to={`${window.location.pathname}?page=${item.page}`}
+            {...item}
+          />
+        )}
+      />
     </div>
   );
 }

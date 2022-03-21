@@ -6,8 +6,16 @@
   margin-top: 35px;
   border: 1px solid black;
 
+  @media (max-width: 600px) {
+    width: 300px;
+    right: -70px;
+  }
+
   &__body {
     padding: 25px;
+    @media (max-width: 600px) {
+      padding: 10px;
+    }
   }
 
   &__item {
@@ -38,6 +46,11 @@
 
     &__title {
       padding: 0 10px 0 20px;
+      @media (max-width: 600px) {
+        width: 115px;
+        padding: 0 5px 0 5px;
+        font-size: 13px;
+      }
     }
     &__count {
       padding-right: 20px;

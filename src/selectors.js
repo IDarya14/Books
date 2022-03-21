@@ -1,8 +1,8 @@
 export const sortBooks = (currentBook, sort, searchTitle) => {
   const allBooks = currentBook.filter(
     (elem) =>
-      elem.title.toLowerCase().includes(searchTitle) ||
-      elem.author.toLowerCase().includes(searchTitle)
+      elem.title.toLowerCase().includes(searchTitle.toLowerCase()) ||
+      elem.author.toLowerCase().includes(searchTitle.toLowerCase())
   );
 
   switch (sort) {

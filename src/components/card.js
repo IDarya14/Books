@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { addBookToCard } from '../actions/card';
 import { count } from '../actions/menu';
 import { priceR } from '../actions/menu';
+import { addBookFromLS } from '../actions/card';
 
 import './card.scss';
 
@@ -17,7 +18,7 @@ export const Card = ({ setOpen, allCount, price }) => {
     const index = array.findIndex((elem) => elem.id === id);
     array[index].count++;
     setTimeout(() => {
-      dispatch(addBookToCard(array));
+      dispatch(addBookFromLS(array));
     });
     const json = localStorage.getItem('books');
     const booksLS = JSON.parse(json);
@@ -35,13 +36,13 @@ export const Card = ({ setOpen, allCount, price }) => {
     array[index].count--;
     if (array[index].count > 0) {
       setTimeout(() => {
-        dispatch(addBookToCard(array));
+        dispatch(addBookFromLS(array));
       });
     } else {
       console.log('help');
       array.splice(index, 1);
       setTimeout(() => {
-        dispatch(addBookToCard(array));
+        dispatch(addBookFromLS(array));
         if (!array.length) {
           setOpen(false);
         }
@@ -69,7 +70,7 @@ export const Card = ({ setOpen, allCount, price }) => {
       const books2 = [...books];
       books2.splice(index, 1);
       setTimeout(() => {
-        dispatch(addBookToCard(books2));
+        dispatch(addBookFromLS(books2));
         if (!books2.length) {
           setOpen(false);
         }

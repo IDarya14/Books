@@ -28,13 +28,13 @@ export default function (props) {
 
   const addBook = (book) => {
     if (!book.count) {
-      addBookToCard({ ...book, count: 1 });
+      dispatch(addBookToCard({ ...book, count: 1 }));
     } else {
-      addBookToCard();
+      dispatch(addBookToCard());
     }
     const array = localStorage.getItem('books');
     if (!array) {
-      addBookToCard([...arrRedux, { ...book, count: 1 }]);
+      dispatch(addBookToCard([...arrRedux, { ...book, count: 1 }]));
       localStorage.setItem(
         'books',
         JSON.stringify([
@@ -51,13 +51,13 @@ export default function (props) {
       if (index === -1) {
         const arr2 = [...arr, { id: book.id, count: 1 }];
         localStorage.setItem('books', JSON.stringify(arr2));
-        addBookToCard([...arrRedux, { ...book, count: 1 }]);
+        dispatch(addBookToCard([...arrRedux, { ...book, count: 1 }]));
       } else {
         arr[index] = { id: book.id, count: arr[index].count + 1 };
         localStorage.setItem('books', JSON.stringify(arr));
 
         arrRedux[indexArr] = { ...book, count: arrRedux[indexArr].count + 1 };
-        addBookToCard(arrRedux);
+        dispatch(addBookToCard(arrRedux));
       }
     }
   };
@@ -105,7 +105,14 @@ export default function (props) {
           path="/books"
           element={
             <Home allCount={allCount} price={price}>
-              <Allbooks allCount={allCount} price={price} addBook={addBook} />
+              {(props) => (
+                <Allbooks
+                  allCount={allCount}
+                  price={price}
+                  addBook={addBook}
+                  {...props}
+                />
+              )}
             </Home>
           }
         />
@@ -113,7 +120,9 @@ export default function (props) {
           path="/books/:id"
           element={
             <Home allCount={allCount} price={price}>
-              <Onebook allCount={allCount} price={price} addBook={addBook} />
+              {() => (
+                <Onebook allCount={allCount} price={price} addBook={addBook} />
+              )}
             </Home>
           }
         />

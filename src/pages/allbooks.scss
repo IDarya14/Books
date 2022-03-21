@@ -1,9 +1,41 @@
-.wrapper {
-  .container {
-    width: 990px;
+.allbooks {
+  width: 990px;
+  margin: 0 auto;
+  display: flex;
+  @media (max-width: 1070px) {
+    justify-content: space-around;
+  }
+
+  @media (max-width: 1000px) {
+    width: 740px;
     margin: 0 auto;
-    .sort_books {
-      display: flex;
+  }
+
+  @media (max-width: 740px) {
+    width: 600px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 600px) {
+    width: 320px;
+    margin: 0 auto;
+  }
+
+  .container {
+    display: flex;
+
+    @media (max-width: 600px) {
+      width: 320px;
+    }
+  }
+
+  @media (max-width: 1070px) {
+    .books {
+      width: 740px;
+      margin: 0 auto;
+    }
+    .sort {
+      display: none;
     }
   }
 }
