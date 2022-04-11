@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Footer } from './Footer';
 import { Menu } from './Menu';
 
 export const Home = (props) => {
@@ -10,6 +11,7 @@ export const Home = (props) => {
     <>
       <Menu allCount={allCount} price={price} sort={sort} setSort={setSort} />
       {children({ sort, setSort })}
+      <Footer />
     </>
   );
 };

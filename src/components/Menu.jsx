@@ -51,9 +51,7 @@ export const Menu = ({ allCount, price, sort, setSort }) => {
   };
 
   const openCard = () => {
-    if (!open) {
-      setOpen(true);
-    }
+    setOpen((prev) => !prev);
   };
 
   const openSearchMenu = () => {

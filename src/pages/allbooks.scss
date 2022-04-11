@@ -2,6 +2,7 @@
   width: 990px;
   margin: 0 auto;
   display: flex;
+  min-height: calc(100vh - 174px);
   @media (max-width: 1070px) {
     justify-content: space-around;
   }

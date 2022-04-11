@@ -9,12 +9,15 @@
       outline: 1px solid rgb(180, 174, 174);
       height: 50px;
       cursor: pointer;
+      transition: all 0.3s;
     }
     .sort_item:hover {
       background-color: rgb(243, 234, 234);
+      transition: all 0.3s;
     }
     .sort_item_active {
       background-color: rgb(243, 234, 234);
+      transition: all 0.3s;
     }
   }
 }
